@@ -47,9 +47,9 @@ class Student(models.Model):
     is_Bangladeshi  =  models.BooleanField(default=False)
     created_at      = models.DateTimeField(auto_now_add=True)
     age             = models.PositiveBigIntegerField()
-    result          = models.ManyToManyField(Result)
+    #result          = models.ManyToManyField(Result)
     #hobby           = models.OneToOneField(Hobby, on_delete=models.CASCADE, null=True, blank=True)
-    Subject         = models.ManyToManyField(Subject)
+    #Subject         = models.ManyToManyField(Subject)
 
     def __str__(self):
         return f'{self.name}"s Profile'
