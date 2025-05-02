@@ -1,23 +1,26 @@
 from django.db import models
 
 
-# class Hobby(models.Model):
-#     name = models.CharField(max_length = 50)
+class Hobby(models.Model):
+    name = models.CharField(max_length = 50)
 
 
-#     def __str__(self):
-#         return f'{self.name}"s Profile'
+    def __str__(self):
+        return self.name
 
 class Subject(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f'{self.name}"s Profile'
+        return self.name
 
 class Result(models.Model):
     marks = models.FloatField()
-    Subject = models.ForeignKey(Subject, on_delete= models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete= models.CASCADE)
 
+    def __str__(self):
+        return self.subject.name
+       
 class Student(models.Model):
 
     GENDER = [
@@ -47,9 +50,9 @@ class Student(models.Model):
     is_Bangladeshi  =  models.BooleanField(default=False)
     created_at      = models.DateTimeField(auto_now_add=True)
     age             = models.PositiveBigIntegerField()
-    #result          = models.ManyToManyField(Result)
-    #hobby           = models.OneToOneField(Hobby, on_delete=models.CASCADE, null=True, blank=True)
-    #Subject         = models.ManyToManyField(Subject)
+    result          = models.ManyToManyField(Result)
+    hobby           = models.OneToOneField(Hobby, on_delete=models.CASCADE, null=True, blank=True)
+    subject         = models.ManyToManyField(Subject)
 
     def __str__(self):
         return f'{self.name}"s Profile'
